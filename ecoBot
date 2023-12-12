@@ -1,34 +1,33 @@
 // ==UserScript==
-// @name         Yahbot
+// @name         ecoBot
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
 // @author       Evgeniy Petrov
-// @match        https://www.yahoo.com/*
+// @match        https://www.ecosia.org/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=yahoo.com
 // @grant        none
 // ==/UserScript==
 
-let searchBtn = document.getElementById("ybar-search");
-let input = document.getElementsByName("p")[0];
+let searchBtn = document.getElementsByClassName("button")[1];
+let input = document.getElementsByName("q")[0];
 let links = document.links
 let keywords = ["Купить машину", "продать машину", "обменять машину"];
 let keyword = keywords[getRandom(0, keywords.length)];
 
 if (searchBtn != null) {
-  input.value = keyword;
+ input.value = keyword;
   searchBtn.click();
-} else {
+}
 
-
-  for (let i = 0; i < links.length; i++) {
+for (let i = 0; i < links.length; i++) {
     if (links[i].href.includes("auto.ru")) {
       let link = links[i];
       link.click();
       break;
     }
   }
-}
+
 
 function getRandom(min, max) {
 return Math.floor(Math.random() * (max - min) + min);
